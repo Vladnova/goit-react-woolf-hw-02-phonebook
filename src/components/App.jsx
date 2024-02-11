@@ -12,9 +12,10 @@ export class App extends Component {
 
   saveContact = newContact => {
     const { contacts } = this.state;
-    const allNameContacts = contacts.map(({ name }) => name.toLowerCase());
     const { name } = newContact;
-    allNameContacts.includes(name.toLowerCase())
+    contacts.find(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    )
       ? alert(`${name} is already in contacts`)
       : this.setState(prev => ({ contacts: [newContact, ...prev.contacts] }));
   };
